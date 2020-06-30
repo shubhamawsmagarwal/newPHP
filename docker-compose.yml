@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  devmysql:
+    build:
+      context: ./
+      dockerfile: mysql.DockerFile
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'pass'
+    restart: always
+  devbox:
+    build:
+      context: ./
+      dockerfile: apache.DockerFile
+    ports:
+      - "81:80"
+    volumes:
+      - /home/ec2-user/phpdata:/var/www/html
